@@ -33,7 +33,6 @@ module Pushbots
       data[:alias] = device_alias if device_alias
       data[:except_tags] = except_tags if except_tags
       data[:payload] = payload if payload
-      puts data.to_json
       return data
     end
   end
