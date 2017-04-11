@@ -1,14 +1,13 @@
 module Pushbots
   # All class
   class All < Push
-    attr_accessor :schedule, :tags, :tag, :sound, :badge, :except_tags, :device_alias,
+    attr_accessor :schedule, :tags, :sound, :badge, :except_tags, :device_alias,
                   :except_alias, :payload
 
     def initialize(platforms, message, schedule, options = {})
       super(platforms, message, :all)
       self.schedule = schedule
       self.tags = options[:tags]
-      self.tag = options[:tags]
       self.sound = options[:sound]
       self.badge = options[:badge]
       self.except_tags = options[:except_tags]
@@ -29,13 +28,13 @@ module Pushbots
         msg: message,
         schedule: schedule
       }
-      data[:tags] if tags
-      data[:tag] if tag
-      data[:badge] if badge
-      data[:alias] if device_alias
-      data[:except_tags] if except_tags
-      data[:payload] if payload
-      data
+      data[:tags] = tags if tags
+      data[:badge] = badge if badge
+      data[:alias] = device_alias if device_alias
+      data[:except_tags] = except_tags if except_tags
+      data[:payload] = payload if payload
+      puts data.to_json
+      return data
     end
   end
 end
